@@ -1,16 +1,19 @@
 import rpc
 import time
 import requests
+import json
 
-userclientid = input("Discord Kullanıcı ID'niz: ")
+with open('userid.json') as f:
+    data = json.load(f)
+userid = data['userclientid']
 
 print("RPC Bağlanılıyor")
-client_id = 'privclientid'  
+client_id = 'clientid'  
 rpc_obj = rpc.DiscordIpcClient.for_platform(client_id)
 print("RPC Bağlantısı Başarılı.")
 
 while True:
- url1 = f"privapilink" + userclientid
+ url1 = f"gizliapilink" + userid
  f = requests.get(url1)
  rpcdetails = f.text.split('["')[1].split('"],')[0]
  rpcstate = f.text.split('müziksüresi":["')[1].split('"],')[0]
